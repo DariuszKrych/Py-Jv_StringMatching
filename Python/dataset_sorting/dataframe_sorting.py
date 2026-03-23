@@ -1,7 +1,7 @@
 import pandas as pd
 import ast
 import time
-import os
+from pathlib import Path
 
 
 def raw_review_dataframe_to_split(print_docstrings):
@@ -20,10 +20,16 @@ of a smaller csv split off of it would take an unreasonable amount of time to ex
     if print_docstrings:
         print(raw_review_dataframe_to_split.__doc__)
 
-    if not os.path.exists('..\Put_Dataset_Here\dataset.csv'):
+    base_dir = Path("..")
+    dataset_dir = base_dir / "Put_Dataset_Here"
+    output_dir = base_dir / "Separate_Game_Reviews"
+    dataset_file = dataset_dir / "dataset.csv"
+    reference_file = dataset_dir / "App_ID_Row_Reference.txt"
+
+    if not dataset_file.exists():
         print("The required dataset.csv is missing from the Put_Dataset_Here folder."
               "\nPlease reference \'Step 4: (EXTRA - for additional functionality)\' in the readme.md file.")
-    elif not os.path.exists('..\Put_Dataset_Here\App_ID_Row_Reference.txt'):
+    elif not reference_file.exists():
         print("The required App_ID_Row_Reference.txt is missing from the Put_Dataset_Here folder."
               "\nPlease run the second option from the main menu to re-create this required reference dictionary file.")
     else:
@@ -32,7 +38,7 @@ of a smaller csv split off of it would take an unreasonable amount of time to ex
 
         # Getting the specific rows for given app_id from reference dictionary stored as a txt.
         # Open the file and read the contents
-        with open('..\Put_Dataset_Here\App_ID_Row_Reference.txt', 'r') as file:
+        with open(reference_file, 'r') as file:
             data = file.read()
         # Converts the string representation of the dictionary into an actual dictionary
         app_id_ranges = ast.literal_eval(data)
@@ -62,11 +68,12 @@ of a smaller csv split off of it would take an unreasonable amount of time to ex
 
         # Skipping all rows until the first row with review data and then reading only the rows in which the desired review data is located.
         # Reading only data from the review text column ignoring all other columns as their data is not necessary.
-        filtered_reviews = pd.read_csv('../Put_Dataset_Here/dataset.csv', usecols=['review_text'], skiprows=list(range(1, int(start_row)-1)), nrows = end_row-start_row+1)
+        filtered_reviews = pd.read_csv(dataset_file, usecols=['review_text'], skiprows=list(range(1, int(start_row) - 1)), nrows=end_row - start_row + 1)
         # Saving the data read as a csv.
-        filtered_reviews.to_csv("../Separate_Game_Reviews/" + str(game_name) + "_reviews.csv", index=False)
+        output_file = output_dir / f"{game_name}_reviews.csv"
+        filtered_reviews.to_csv(output_file, index=False)
 
         end_time = time.time();  time_spent = end_time - initial_time
 
         print(f"Filtering reviews for {game_name} took {round(time_spent, 3)} seconds."
-              f"\nSaved {end_row - start_row + 1} reviews to {str(game_name) + '_reviews.csv'}.")
+              f"\nSaved {end_row - start_row + 1} reviews to {output_file.name}.")
