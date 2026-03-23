@@ -8,7 +8,7 @@ This is meant to simply showcase the performance difference between Python and J
 The Python code was written and maintained by DK.  
 The Java code was written and maintained by NM.
 
-# DK Python Video Showcase
+# Python Video Showcase
 
 
 # Evaluation Guidelines
