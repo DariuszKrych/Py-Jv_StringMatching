@@ -4,9 +4,11 @@ A group project created by Dariusz Krych (DK) & Nathan Micallef (NM) for the CIS
 This project was meant as a way of practicing coding while simultaneously creating something interesting.  
 The project at it's core pertains to string matching algorithms.
 The code in Python and Java have the same string matching algorithms implemented.  
-This is meant to simply showcase the performance difference between Python and Java. 
+This is meant to simply showcase the performance difference between Python and Java.  
 The Python code was written and maintained by DK.  
 The Java code was written and maintained by NM.
+
+# DK Python Video Showcase
 
 
 # Evaluation Guidelines
