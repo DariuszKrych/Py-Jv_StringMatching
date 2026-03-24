@@ -8,15 +8,9 @@ This is meant to simply showcase the performance difference between Python and J
 The Python code was written and maintained by DK.  
 The Java code was written and maintained by NM.
 
-# Python Video Showcase Test 1
+# Python Video Showcase
 
-[![Watch the video](https://img.youtube.com/vi/R46sZhCyG1s/hqdefault.jpg)](https://www.youtube.com/embed/R46sZhCyG1s)
-
-# Python Video Showcase Test 2
-
-[<img src="https://img.youtube.com/vi/R46sZhCyG1s/hqdefault.jpg" width="800" height="600"
-/>](https://www.youtube.com/embed/R46sZhCyG1s)
-
+https://github.com/user-attachments/assets/e64ec085-677a-4acd-81ff-254f5839eaf0
 
 # Evaluation Guidelines
 
